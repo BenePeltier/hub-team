@@ -889,7 +889,8 @@ const ICONS = {
   function setDataError(msg) { loadMsg = msg; renderDir(); }
   function setMe(first, last, role) { var a = $("whoName"), b = $("whoRole"); if (a) a.innerHTML = esc(first || "") + (last ? '<span class="who-ln"> ' + esc(last) + '</span>' : ""); if (b) b.textContent = role ? " · " + role : ""; }
   function showCeo() { root.querySelectorAll("[data-ceo]").forEach(function (x) { x.hidden = false; }); }
-  window.TeamHub = { start: init, setData: setData, setDataError: setDataError, setMe: setMe, showCeo: showCeo, toast: toast };
+  function showRates(list) { root.querySelectorAll("[data-rate]").forEach(function (x) { x.hidden = list.indexOf(x.getAttribute("data-rate")) < 0; }); }
+  window.TeamHub = { start: init, setData: setData, setDataError: setDataError, setMe: setMe, showCeo: showCeo, showRates: showRates, toast: toast };
 })();
 </script>
 <script>
@@ -898,7 +899,7 @@ const ICONS = {
 const SITE = {
   supabaseUrl: "https://iaqcmrzgvlbedbiwyuze.supabase.co",
   supabaseKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhcWNtcnpndmxiZWRiaXd5dXplIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzkyMjYwMTMsImV4cCI6MjA1NDgwMjAxM30.kzG-7mJ5srAUynfHS47Q_neeDWxYGrDi76klY3O-XHI",
-  hubFile: "docs/hub.bin?v=255730c61b"
+  hubFile: "docs/hub.bin?v=b0ddc14606"
 };
 
 (function () {
@@ -1036,6 +1037,17 @@ const SITE = {
 
     if (me) {
       window.TeamHub.setMe(cap(me.user_firstname), up(me.user_lastname), fonction(me, adm[low(me.user_email)]) + " · " + groupes.length + (groupes.length > 1 ? " groupes" : " groupe"));
+    }
+    /* Le barème : la ligne de son rôle (niveau, fonction, groupes suivis comme Consultant) ; le niveau 0 voit les trois */
+    if (me) {
+      var Lm = lvl(me.user_autorisation), fm = fonction(me, adm[low(me.user_email)]), mailm = low(me.user_email), rates = [];
+      if (Lm === 0) rates = ["consultant", "dr", "dn"];
+      else {
+        if (Lm === 1 || /national/i.test(fm)) rates.push("dn");
+        if (Lm === 2 || Lm === 3 || /r[ée]gional/i.test(fm)) rates.push("dr");
+        if (Lm === 4 || all.some(function (g) { return low(g.group_consultant_mail) === mailm; })) rates.push("consultant");
+      }
+      window.TeamHub.showRates(rates);
     }
     /* Les Nouveautés : visibles seulement avec le compte du CEO (niveau 0, fonction CEO) */
     if (me && lvl(me.user_autorisation) === 0 && /\bceo\b/i.test(clean((adm[low(me.user_email)] || {}).admin_fonction) + " " + clean(me.user_role))) window.TeamHub.showCeo();
