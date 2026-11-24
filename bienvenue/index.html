@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Activer ma boîte mail · APOLLO</title>
+<meta name="theme-color" content="#0B0B0D">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&display=swap">
+<style>
+* { box-sizing: border-box; }
+html, body { margin: 0; background: #EFEAE3; color: #0B0B0D; font-family: Inter, "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+[hidden] { display: none !important; }
+button { font: inherit; cursor: pointer; }
+.page { max-width: 600px; margin: 0 auto; padding: 0 0 40px; }
+@media (min-width: 640px) { .page { padding-top: 32px; } .carte { border-radius: 20px; overflow: hidden; } }
+.carte { background: #FFFFFF; }
+header { background: #0B0B0D; color: #F4F4F6; padding: 28px 26px 30px; }
+header img { height: 40px; width: auto; display: block; }
+.sur { margin-top: 30px; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #F77F00; }
+h1 { margin: 12px 0 0; font-size: 32px; line-height: 1.12; font-weight: 700; letter-spacing: -0.025em; }
+.lead { margin: 12px 0 0; font-size: 16px; line-height: 1.5; color: #C9C9D1; }
+.corps { padding: 24px 26px 30px; }
+.go { width: 100%; border: 0; background: #F77F00; color: #0B0B0D; border-radius: 14px; padding: 17px; font-size: 16px; font-weight: 700; }
+.go[disabled] { opacity: 0.6; cursor: default; }
+.note { margin: 12px 0 0; font-size: 13px; line-height: 1.55; color: #6B6B76; }
+.boite { background: #0B0B0D; color: #F4F4F6; border-radius: 18px; padding: 22px; }
+.boite .k { font-size: 12px; color: #A3A3AD; }
+.boite .v { margin-top: 4px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.boite .v span { font-size: 19px; font-weight: 600; word-break: break-all; }
+.boite .mdp span { font-family: "SFMono-Regular", Menlo, Consolas, monospace; font-size: 22px; letter-spacing: 0.06em; color: #F77F00; }
+.boite .sep { height: 1px; background: #26262E; margin: 16px 0; }
+.copier { flex: none; border: 1px solid #34343E; background: transparent; color: #F4F4F6; border-radius: 999px; padding: 7px 14px; font-size: 13px; font-weight: 600; }
+.copier:hover { border-color: #F4F4F6; }
+.alerte { margin-top: 14px; background: #FEF2E6; border-radius: 12px; padding: 12px 14px; font-size: 13.5px; line-height: 1.5; color: #26262C; }
+ol { margin: 22px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; }
+li { display: flex; gap: 12px; align-items: flex-start; font-size: 14.5px; line-height: 1.5; color: #26262C; }
+li .n { flex: none; width: 28px; height: 28px; border-radius: 14px; background: #0B0B0D; color: #F77F00; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+li b { display: block; color: #0B0B0D; }
+.lien { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; background: #F77F00; color: #0B0B0D; border-radius: 12px; padding: 11px 16px; font-size: 14.5px; font-weight: 700; text-decoration: none; }
+.lien.sombre { background: #0B0B0D; color: #F4F4F6; }
+.erreur { background: #FBE4E4; color: #7A1E1E; border-radius: 12px; padding: 14px; font-size: 14.5px; line-height: 1.5; }
+footer { background: #0B0B0D; color: #A3A3AD; padding: 20px 26px; font-size: 12px; line-height: 1.6; }
+footer b { color: #F4F4F6; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="carte">
+    <header>
+      <img src="/assets/apollo-full.png" alt="APOLLO" width="113" height="40">
+      <div class="sur">Bienvenue dans l'équipe</div>
+      <h1 id="titre">Votre boîte APOLLO<br>vous attend.</h1>
+      <p class="lead" id="lead">Votre mot de passe provisoire s'affiche une seule fois&nbsp;: gardez cette page ouverte le temps de vous connecter.</p>
+    </header>
+    <div class="corps" id="corps">
+      <button type="button" class="go" id="afficher">Afficher mon mot de passe provisoire</button>
+      <p class="note">Ce lien personnel ne sert qu'une fois. Ne le transférez pas.</p>
+    </div>
+    <footer><b>APOLLO Business Groupe France (ABGF)</b><br>138 avenue Victor Hugo, 75016 Paris · apollo-business.com</footer>
+  </div>
+</div>
+<script>
+(function () {
+  "use strict";
+  var FN = "https://iaqcmrzgvlbedbiwyuze.supabase.co/functions/v1/Recrutement";
+  var $ = function (id) { return document.getElementById(id); };
+  var JETON = (location.hash.match(/[#&]t=([A-Za-z0-9_-]+)/) || [])[1] || "";
+  function esc(v) { return String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;"); }
+
+  function erreur(m) {
+    $("titre").textContent = "Ce lien a déjà servi.";
+    $("lead").textContent = "Pour votre sécurité, il ne s'ouvre qu'une fois.";
+    $("corps").innerHTML = '<div class="erreur">' + esc(m) + "</div>";
+  }
+  async function copier(btn, texte) {
+    try { await navigator.clipboard.writeText(texte); btn.textContent = "Copié"; setTimeout(function () { btn.textContent = "Copier"; }, 1800); }
+    catch (e) { btn.textContent = "Sélectionnez"; }
+  }
+  async function afficher() {
+    var b = $("afficher");
+    b.disabled = true; b.textContent = "Un instant…";
+    var r, j = null;
+    try {
+      r = await fetch(FN, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ route: "activation", jeton: JETON }) });
+      j = await r.json();
+    } catch (e) { b.disabled = false; b.textContent = "Afficher mon mot de passe provisoire"; alerte("Le réseau ne répond pas pour l'instant. Réessayez dans un instant."); return; }
+    if (!r.ok || !j || j.ok === false) { erreur((j && j.erreur) || "Ce lien n'est plus valable."); return; }
+    history.replaceState(null, "", location.pathname);
+    var gmail = "https://accounts.google.com/AccountChooser?Email=" + encodeURIComponent(j.email) + "&continue=" + encodeURIComponent("https://mail.google.com/mail/");
+    $("titre").innerHTML = esc(j.prenom || "") + ", votre boîte<br>est prête.";
+    var h = '<div class="boite"><div class="k">Votre adresse</div><div class="v"><span id="adr">' + esc(j.email) + '</span><button type="button" class="copier" data-c="adr">Copier</button></div>';
+    if (j.motDePasse) {
+      $("lead").textContent = "Notez ou copiez ce mot de passe provisoire\u00a0: il ne s'affichera plus.";
+      h += '<div class="sep"></div><div class="k">Mot de passe provisoire</div><div class="v mdp"><span id="mdp">' + esc(j.motDePasse) + '</span><button type="button" class="copier" data-c="mdp">Copier</button></div>';
+    } else if (j.test) {
+      $("lead").textContent = "Mode test : aucune boîte n'a été créée. En production, votre mot de passe provisoire s'afficherait ici.";
+    } else {
+      $("lead").textContent = "Votre boîte existait déjà : connectez-vous avec votre mot de passe habituel.";
+    }
+    h += "</div>";
+    if (j.motDePasse) h += '<div class="alerte">Google vous demandera aussitôt de choisir votre propre mot de passe : personne d\'autre ne le connaîtra.</div>';
+    h += "<ol>" +
+      '<li><span class="n">1</span><div><b>Ouvrez Gmail</b>Votre adresse est déjà saisie.<br><a class="lien" href="' + esc(gmail) + '" target="_blank" rel="noopener">Ouvrir ma boîte mail</a></div></li>' +
+      '<li><span class="n">2</span><div><b>' + (j.motDePasse ? "Saisissez le mot de passe provisoire" : "Connectez-vous") + "</b>" + (j.motDePasse ? "Puis choisissez le vôtre." : "Avec votre mot de passe habituel.") + "</div></li>" +
+      '<li><span class="n">3</span><div><b>Ouvrez votre Hub APOLLO Team</b>Connectez-vous avec votre adresse @apollofrance.com et « Recevoir un code par e-mail ».<br><a class="lien sombre" href="/" target="_blank" rel="noopener">Ouvrir mon Hub APOLLO</a></div></li>' +
+      "</ol>";
+    $("corps").innerHTML = h;
+  }
+  function alerte(m) { var p = document.createElement("div"); p.className = "erreur"; p.style.marginTop = "12px"; p.textContent = m; $("corps").appendChild(p); }
+  document.addEventListener("click", function (e) {
+    var c = e.target.closest("[data-c]");
+    if (c) { copier(c, $(c.getAttribute("data-c")).textContent); return; }
+    if (e.target.id === "afficher") afficher();
+  });
+  if (!JETON) erreur("Ce lien est incomplet. Ouvrez-le à nouveau depuis votre mail de bienvenue.");
+})();
+</script>
+</body>
+</html>

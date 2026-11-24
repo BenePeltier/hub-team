@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Recrutement · Hub APOLLO Team</title>
+<meta name="theme-color" content="#0F0F13">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&display=swap">
+<style>
+/* Espace Recrutement : reserve a Gilles IACONES et Frederic CHOUX. Maquette validee le 24/11/2026. */
+:root {
+  --bg: #0F0F13; --panel: #17171D; --panel2: #1E1E25; --line: #26262E; --line2: #34343E;
+  --txt: #F4F4F6; --soft: #C9C9D1; --muted: #A3A3AD; --dim: #8A8A94;
+  --orange: #F77F00; --orange-h: #FF8F1F; --cream: #FEF2E6; --ink: #0B0B0D;
+  --green: #7FD3A0; --red: #C53B3B; --red-soft: #F08A8A;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--txt); font-family: Inter, "Helvetica Neue", Arial, sans-serif; font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+[hidden] { display: none !important; }
+a { color: var(--orange); }
+a:hover { color: #FFA54D; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+.wrap { max-width: 1280px; margin: 0 auto; padding-left: 32px; padding-right: 32px; }
+
+/* ---------- porte ---------- */
+.gate { min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; position: relative; overflow: hidden; }
+.gate .glow { position: absolute; inset: 0; background: radial-gradient(60% 50% at 80% 0%, rgba(247, 127, 0, 0.16), transparent 70%); pointer-events: none; }
+.gate .orbit { position: absolute; right: -30vw; top: -36vw; width: 72vw; height: 72vw; max-width: 600px; max-height: 600px; border: 1.5px solid rgba(247, 127, 0, 0.5); border-radius: 50%; pointer-events: none; }
+.gate .orbit::after { content: ""; position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--orange); left: 11%; top: 76%; box-shadow: 0 0 0 6px rgba(247, 127, 0, 0.18); }
+.gate-card { position: relative; width: 100%; max-width: 440px; padding: 40px 20px 48px; display: grid; gap: 18px; }
+.gate-card .brand { height: 52px; width: auto; margin-bottom: 10px; }
+.gate h1 { margin: 10px 0 0; font-size: 30px; font-weight: 700; letter-spacing: -0.024em; line-height: 1.08; }
+.gate h1 em { font-style: normal; color: var(--orange); }
+.gate .sub { margin: 10px 0 0; font-size: 15px; color: var(--muted); line-height: 1.5; }
+.gate form { display: grid; gap: 12px; margin-top: 18px; }
+.gate label { display: grid; gap: 6px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.gate input { width: 100%; min-height: 50px; padding: 0 16px; font-size: 16px; color: var(--txt); background: rgba(246, 239, 228, 0.07); border: 1px solid rgba(246, 239, 228, 0.22); border-radius: 12px; outline: none; }
+.gate input:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(247, 127, 0, 0.22); }
+.gate input[inputmode="numeric"] { letter-spacing: 0.3em; font-weight: 700; font-size: 22px; text-align: center; }
+.gate .alt { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 14px; font-size: 13.5px; color: var(--muted); }
+.gate .alt button { background: none; border: 0; padding: 0; color: var(--orange); font-weight: 600; }
+.gate .msg { font-size: 14px; line-height: 1.5; padding: 12px 14px; border-radius: 10px; background: rgba(246, 239, 228, 0.07); border: 1px solid rgba(246, 239, 228, 0.14); }
+.gate .msg.err { border-color: rgba(247, 127, 0, 0.6); background: rgba(247, 127, 0, 0.12); }
+.gate .msg:empty { display: none; }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--orange); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 0 20px; border-radius: 14px; border: 1px solid transparent; font-size: 16px; font-weight: 700; text-decoration: none; }
+.btn-primary { background: var(--orange); color: var(--ink); }
+.btn-primary:hover { background: var(--orange-h); color: var(--ink); }
+.btn-ghost { background: transparent; color: var(--txt); border-color: var(--line2); }
+.btn-ghost:hover { border-color: var(--txt); color: var(--txt); }
+.btn[disabled] { opacity: 0.6; cursor: default; }
+.spinner { width: 28px; height: 28px; border-radius: 50%; border: 3px solid rgba(246, 239, 228, 0.2); border-top-color: var(--orange); animation: spin 0.9s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- en-tete ---------- */
+header.top { border-bottom: 1px solid #24242C; }
+header.top .wrap { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; padding-top: 16px; padding-bottom: 16px; }
+.brandline { display: flex; align-items: center; gap: 16px; }
+.brandline img { height: 36px; width: auto; display: block; }
+.brandline .sep { width: 1px; height: 22px; background: var(--line2); }
+.up { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.me { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+.me strong { color: var(--txt); font-weight: 600; }
+.pill { font-size: 13px; color: var(--txt); text-decoration: none; border: 1px solid var(--line2); border-radius: 999px; padding: 8px 16px; background: transparent; }
+.pill:hover { border-color: var(--txt); color: var(--txt); }
+.band { background: rgba(247, 127, 0, 0.08); border-bottom: 1px solid rgba(247, 127, 0, 0.28); }
+.band .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; padding-top: 11px; padding-bottom: 11px; font-size: 13px; color: #FFC68A; }
+.band b { color: var(--orange); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-size: 11.5px; }
+.band .sp { flex: 1 1 auto; }
+.etat { display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(247, 127, 0, 0.3); border-radius: 999px; padding: 3px 10px; font-size: 12px; color: var(--soft); }
+.etat i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+.etat.off i { background: var(--red-soft); }
+
+/* ---------- ouverture ---------- */
+main { padding-top: 48px; padding-bottom: 72px; }
+.hero { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; justify-content: space-between; }
+.hero .txt { flex: 1 1 620px; min-width: 0; }
+h1.titre { margin: 14px 0 0; font-size: 56px; line-height: 1.02; font-weight: 700; letter-spacing: -0.03em; }
+h1.titre span { color: var(--orange); }
+.lead { margin: 18px 0 0; max-width: 640px; font-size: 17px; color: var(--soft); }
+.lock { display: flex; align-items: center; gap: 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 12px 16px; font-size: 13px; color: var(--soft); }
+.lock strong { color: var(--txt); font-weight: 600; }
+.stats { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 14px; }
+.stat { flex: 1 1 200px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; }
+.stat .k { font-size: 13px; color: var(--muted); }
+.stat .v { margin-top: 4px; font-size: 34px; font-weight: 700; letter-spacing: -0.02em; }
+.stat.hot { background: rgba(247, 127, 0, 0.12); border-color: rgba(247, 127, 0, 0.45); }
+.stat.hot .k { color: #FFC68A; }
+.stat.hot .v { color: var(--orange); }
+.grid { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
+
+/* ---------- la fiche ---------- */
+.fiche { flex: 999 1 600px; min-width: 0; background: var(--cream); color: var(--ink); border-radius: 22px; padding: 30px 28px 28px; }
+.kicker { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+.kicker i { width: 8px; height: 8px; border-radius: 4px; background: var(--orange); }
+.fiche h2 { margin: 10px 0 0; font-size: 30px; line-height: 1.12; font-weight: 700; letter-spacing: -0.02em; }
+.fiche .intro { margin: 8px 0 0; font-size: 14px; color: #4A4A52; }
+.form { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 14px 12px; }
+.leg { flex: 1 1 100%; margin-top: 6px; padding-top: 14px; border-top: 1px solid #EBD9C4; font-size: 11.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6B6B76; }
+.leg:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.f { flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 6px; font-size: 12px; font-weight: 600; color: #3A3A42; }
+.f.w2 { flex: 2 1 412px; }
+.f.full { flex: 1 1 100%; }
+.f.s { flex: 0 1 140px; }
+.f input, .f select, .f textarea { width: 100%; min-width: 0; border: 1px solid #EBD9C4; background: #FFFFFF; border-radius: 10px; padding: 11px 12px; font-size: 15px; font-weight: 400; color: var(--ink); outline: none; }
+.f textarea { min-height: 76px; resize: vertical; }
+.f input:focus, .f select:focus, .f textarea:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(247, 127, 0, 0.18); }
+.f.bad input, .f.bad select { border-color: var(--red); }
+.f .aide { font-weight: 400; color: #6B6B76; font-size: 12.5px; }
+.seg { display: flex; gap: 8px; flex-wrap: wrap; }
+.seg button { border: 1px solid #EBD9C4; background: #FFFFFF; border-radius: 999px; padding: 8px 16px; font-size: 14px; font-weight: 600; color: var(--ink); }
+.seg button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #F4F4F6; }
+.adr { display: flex; gap: 8px; align-items: center; }
+.adr input { flex: 1 1 auto; }
+.libre { flex: none; font-size: 12px; font-weight: 600; border-radius: 999px; padding: 5px 10px; white-space: nowrap; }
+.libre.ok { background: #E4F4EA; color: #1E6B3A; }
+.libre.ko { background: #FDE7CF; color: #8A4A00; }
+.libre.wait { background: #EFE7DC; color: #6B6B76; }
+.groupes { border: 1px solid #EBD9C4; background: #FFFFFF; border-radius: 12px; padding: 6px; }
+.gr { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; padding: 10px 12px; border-radius: 8px; background: var(--cream); margin-bottom: 6px; }
+.gr strong { flex: 1 1 160px; font-size: 15px; font-weight: 600; }
+.gr .m { font-size: 13px; color: #6B6B76; }
+.gr .obj { display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 600; background: #FFFFFF; border: 1px solid #EBD9C4; border-radius: 8px; padding: 2px 8px 2px 10px; }
+.gr .obj input { width: 44px; border: 0; border-bottom: 1px dashed #D9B98F; padding: 4px 2px 3px; font-size: 13px; font-weight: 600; text-align: center; outline: none; background: transparent; }
+.gr .obj input:focus { border-bottom-color: var(--orange); }
+.gr .x { border: 0; background: transparent; color: #6B6B76; padding: 4px; line-height: 0; border-radius: 6px; }
+.gr .x:hover { background: #F3E3D1; color: var(--ink); }
+.gr .warn { flex: 1 1 100%; font-size: 12.5px; color: #8A4A00; }
+.ajout { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 6px 6px 2px; }
+.ajout select { flex: 1 1 260px; min-width: 0; border: 1px solid #EBD9C4; border-radius: 10px; padding: 9px 10px; font-size: 14px; background: #FFFFFF; color: var(--ink); }
+.add { border: 0; background: transparent; padding: 8px 6px; font-size: 13px; font-weight: 600; color: var(--ink); }
+.add:hover { color: #8A4A00; }
+.choix { display: flex; flex-wrap: wrap; gap: 10px; }
+.choix button { flex: 1 1 220px; text-align: left; border: 2px solid #EBD9C4; background: #FFFFFF; color: var(--ink); border-radius: 12px; padding: 12px 14px; }
+.choix button b { display: block; font-size: 15px; font-weight: 600; }
+.choix button span { display: block; font-size: 12.5px; color: #6B6B76; }
+.choix button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: #F4F4F6; }
+.choix button[aria-pressed="true"] span { color: var(--soft); }
+.go { flex: 1 1 100%; margin-top: 4px; border: 0; background: var(--orange); color: var(--ink); border-radius: 14px; padding: 16px 20px; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.go:hover { background: var(--orange-h); }
+.go.confirm { background: var(--ink); color: #F4F4F6; }
+.go[disabled] { opacity: 0.6; cursor: default; }
+.annul-envoi { flex: 1 1 100%; margin: -4px 0 0; text-align: center; }
+.annul-envoi button { border: 0; background: none; color: #4A4A52; font-size: 13px; font-weight: 600; text-decoration: underline; }
+.note { flex: 1 1 100%; margin: 0; font-size: 13px; color: #4A4A52; }
+.ferr { flex: 1 1 100%; margin: 0; font-size: 13.5px; color: #8E2424; background: #FBE4E4; border-radius: 10px; padding: 10px 12px; }
+
+/* ---------- colonne de droite ---------- */
+aside.col { flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+.carte { background: var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 26px 24px 10px; }
+.carte h2 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
+.carte .s { margin: 4px 0 18px; font-size: 13px; color: var(--muted); }
+.circuit { list-style: none; margin: 0; padding: 0; }
+.circuit li { display: flex; gap: 14px; }
+.circuit .rail { display: flex; flex-direction: column; align-items: center; }
+.circuit .ic { width: 36px; height: 36px; flex: none; border-radius: 18px; background: rgba(247, 127, 0, 0.14); border: 1px solid rgba(247, 127, 0, 0.5); display: flex; align-items: center; justify-content: center; }
+.circuit .ic.plein { background: var(--orange); border-color: var(--orange); }
+.circuit .trait { flex: 1; width: 1px; background: #2E2E37; margin: 6px 0; }
+.circuit .c { padding-bottom: 18px; }
+.circuit .t { font-size: 15px; font-weight: 600; }
+.circuit .d { font-size: 13px; color: var(--muted); }
+.carte.relances { padding: 22px 24px; }
+.carte.relances h2 { font-size: 17px; }
+.puces { margin: 12px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 13.5px; color: var(--soft); }
+.puces li { display: flex; gap: 10px; }
+.puces li::before { content: ""; flex: none; width: 6px; height: 6px; margin-top: 8px; border-radius: 3px; background: var(--orange); }
+
+/* ---------- les parcours ---------- */
+.liste { margin-top: 24px; background: var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 26px 28px 8px; }
+.liste .tete { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.liste h2 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
+.onglets { display: flex; gap: 6px; flex-wrap: wrap; }
+.onglets button { border: 1px solid var(--line2); background: transparent; color: var(--soft); border-radius: 999px; padding: 7px 14px; font-size: 13px; }
+.onglets button[aria-pressed="true"] { background: var(--txt); border-color: var(--txt); color: var(--ink); font-weight: 600; }
+.vide { padding: 26px 0 30px; border-top: 1px solid var(--line); margin-top: 14px; color: var(--muted); font-size: 14px; }
+article.p { padding: 18px 0; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; }
+article.p:first-of-type { margin-top: 14px; }
+.p .qui { flex: 1 1 220px; min-width: 0; }
+.p .nom { font-size: 16px; font-weight: 600; background: none; border: 0; padding: 0; color: var(--txt); text-align: left; }
+.p .nom:hover { color: var(--orange); }
+.p .ou { font-size: 13px; color: var(--muted); }
+.tag { display: inline-block; margin-left: 8px; vertical-align: 2px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; color: var(--orange); border: 1px solid rgba(247, 127, 0, 0.5); border-radius: 6px; padding: 1px 6px; }
+.p .barre { flex: 2 1 340px; min-width: 0; display: flex; gap: 6px; }
+.p .barre > div { flex: 1; }
+.p .barre .b { height: 6px; border-radius: 3px; background: var(--line2); }
+.p .barre .b.on { background: var(--orange); }
+.p .barre .b.mi { background: rgba(247, 127, 0, 0.45); }
+.p .barre .b.gris { background: #5A5A64; }
+.p .barre .l { margin-top: 6px; font-size: 11px; color: var(--dim); }
+.p .barre .b.on + .l, .p .barre .b.mi + .l { color: var(--soft); }
+.p .statut { flex: 1 1 200px; min-width: 0; }
+.p .statut .a { font-size: 14px; font-weight: 600; color: var(--orange); }
+.p .statut .a.vert { color: var(--green); }
+.p .statut .a.gris { color: var(--soft); }
+.p .statut .z { font-size: 13px; color: var(--muted); }
+.p .statut .err { font-size: 12.5px; color: var(--red-soft); margin-top: 2px; }
+.p.annule .nom { color: var(--muted); }
+.acts { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+@media (min-width: 1100px) { .p .acts { flex: 0 0 300px; justify-content: flex-end; } }
+.b-s { border: 1px solid var(--line2); background: transparent; color: var(--txt); border-radius: 999px; padding: 9px 15px; font-size: 13px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+.b-s:hover { border-color: var(--txt); color: var(--txt); }
+.b-s.prim { background: var(--orange); border-color: var(--orange); color: var(--ink); font-weight: 700; }
+.b-s.prim:hover { background: var(--orange-h); color: var(--ink); }
+.b-s.nu { border-color: transparent; color: var(--muted); padding: 9px 10px; }
+.b-s.nu:hover { color: var(--txt); }
+.b-s[disabled] { opacity: 0.55; cursor: default; }
+
+/* ---------- volet de detail ---------- */
+.voile { position: fixed; inset: 0; background: rgba(5, 5, 8, 0.6); z-index: 40; }
+.volet { position: fixed; top: 0; right: 0; bottom: 0; width: min(560px, 100vw); background: var(--panel); border-left: 1px solid var(--line); z-index: 41; display: flex; flex-direction: column; }
+.volet .vh { padding: 22px 24px 18px; border-bottom: 1px solid var(--line); display: flex; gap: 12px; align-items: flex-start; justify-content: space-between; }
+.volet .vh h2 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+.volet .vh .z { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.volet .fermer { border: 1px solid var(--line2); background: transparent; color: var(--txt); border-radius: 999px; width: 38px; height: 38px; flex: none; line-height: 0; }
+.volet .vb { flex: 1; overflow: auto; padding: 8px 24px 28px; }
+.volet .vf { padding: 14px 24px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px; }
+.bloc { margin-top: 20px; }
+.bloc h3 { margin: 0 0 10px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.kv { display: grid; grid-template-columns: 150px 1fr; gap: 7px 14px; font-size: 14px; }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; color: var(--txt); word-break: break-word; }
+.docs { display: flex; flex-direction: column; gap: 8px; }
+.doc { display: flex; gap: 12px; align-items: center; background: var(--panel2); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; font-size: 14px; }
+.doc .i { flex: none; width: 30px; height: 30px; border-radius: 8px; background: rgba(127, 211, 160, 0.14); display: flex; align-items: center; justify-content: center; }
+.doc.manque .i { background: rgba(247, 127, 0, 0.14); }
+.doc .n { flex: 1; min-width: 0; }
+.doc .n small { display: block; color: var(--muted); font-size: 12px; }
+.etapes { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+.etapes li { display: flex; gap: 10px; align-items: baseline; color: var(--dim); }
+.etapes li::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 4px; background: var(--line2); transform: translateY(-1px); }
+.etapes li.ok { color: var(--txt); }
+.etapes li.ok::before { background: var(--orange); }
+.etapes li span { margin-left: auto; color: var(--muted); font-size: 13px; white-space: nowrap; }
+.journal { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; font-size: 13.5px; }
+.journal li { display: grid; grid-template-columns: 96px 1fr; gap: 10px; color: var(--soft); }
+.journal time { color: var(--dim); font-size: 12.5px; }
+.journal .e { color: var(--red-soft); }
+.alerte { margin-top: 16px; background: rgba(197, 59, 59, 0.12); border: 1px solid rgba(240, 138, 138, 0.4); color: #F6C3C3; border-radius: 12px; padding: 12px 14px; font-size: 13.5px; }
+
+/* ---------- dialogue d'annulation ---------- */
+.dlg { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 20px; background: rgba(5, 5, 8, 0.66); }
+.dlg section { width: min(480px, 100%); background: var(--panel); border: 1px solid #2A2A33; border-radius: 22px; padding: 28px; }
+.dlg .t { display: flex; align-items: center; gap: 12px; }
+.dlg .t span { flex: none; width: 40px; height: 40px; border-radius: 12px; background: rgba(197, 59, 59, 0.18); display: flex; align-items: center; justify-content: center; }
+.dlg h2 { margin: 0; font-size: 20px; line-height: 1.25; font-weight: 700; letter-spacing: -0.01em; }
+.dlg p { margin: 14px 0 0; font-size: 14px; line-height: 1.55; color: var(--soft); }
+.dlg label.m { margin-top: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 12px; font-weight: 600; color: var(--muted); }
+.dlg input[type="text"] { border: 1px solid var(--line2); background: var(--bg); border-radius: 10px; padding: 11px 12px; font-size: 14.5px; color: var(--txt); outline: none; }
+.dlg input[type="text"]:focus { border-color: var(--orange); }
+.dlg label.c { margin-top: 14px; display: flex; gap: 12px; align-items: flex-start; background: var(--panel2); border: 1px solid #2A2A33; border-radius: 14px; padding: 14px; cursor: pointer; }
+.dlg label.c input { flex: none; width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--orange); }
+.dlg label.c b { display: block; font-size: 14.5px; line-height: 1.5; }
+.dlg label.c small { display: block; margin-top: 2px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+.dlg .bts { margin-top: 22px; display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+.dlg .bts button { border-radius: 12px; padding: 12px 18px; font-size: 14px; font-weight: 600; }
+.dlg .garder { border: 1px solid var(--line2); background: transparent; color: var(--txt); }
+.dlg .rouge { border: 0; background: var(--red); color: #FFFFFF; font-weight: 700; }
+.dlg .rouge[disabled] { opacity: 0.6; }
+
+/* ---------- message ---------- */
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 200%); visibility: hidden; transition: transform 0.25s ease, visibility 0.25s; z-index: 60; max-width: min(560px, calc(100vw - 32px)); background: var(--txt); color: var(--ink); border-radius: 14px; padding: 13px 18px; font-size: 14.5px; font-weight: 600; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45); }
+.toast.on { transform: translate(-50%, 0); visibility: visible; }
+.toast.err { background: #FBE4E4; color: #7A1E1E; }
+
+@media (max-width: 760px) {
+  .wrap { padding-left: 18px; padding-right: 18px; }
+  main { padding-top: 32px; }
+  h1.titre { font-size: 40px; }
+  .fiche { padding: 24px 18px 20px; }
+  .liste { padding: 20px 18px 6px; }
+  .kv { grid-template-columns: 1fr; gap: 2px 0; }
+  .kv dd { margin-bottom: 8px; }
+  .brandline .up { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div id="gate" class="gate">
+  <div class="glow"></div><div class="orbit" aria-hidden="true"></div>
+  <div class="gate-card">
+    <img class="brand" src="/assets/apollo-full.png" alt="APOLLO, créateur de réseaux" width="147" height="52">
+    <div id="gLoad" class="spinner" aria-label="Chargement"></div>
+    <div id="gLogin" hidden>
+      <div class="eyebrow">Recrutement · Espace réservé</div>
+      <h1>Du premier échange <em>au premier jour.</em></h1>
+      <p class="sub">Connectez-vous avec votre compte APOLLO.</p>
+      <form id="fPwd" novalidate>
+        <label>E-mail<input id="lEmail" type="email" autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false" required></label>
+        <label>Mot de passe<input id="lPwd" type="password" autocomplete="current-password" required></label>
+        <button class="btn btn-primary" type="submit" id="bPwd">Entrer</button>
+        <div class="alt"><span>Mot de passe oublié ?</span><button type="button" id="toCode">Recevoir un code par e-mail</button></div>
+      </form>
+      <form id="fCode" hidden novalidate>
+        <label>E-mail<input id="cEmail" type="email" autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false" required></label>
+        <button class="btn btn-primary" type="submit" id="bSend">Recevoir un code</button>
+        <div class="alt"><button type="button" id="toPwd">Entrer avec mon mot de passe</button></div>
+      </form>
+      <form id="fVerify" hidden novalidate>
+        <p class="sub" id="vHint"></p>
+        <label>Code reçu<input id="cToken" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]*" maxlength="8" required></label>
+        <button class="btn btn-primary" type="submit" id="bVerify">Entrer</button>
+        <div class="alt"><button type="button" id="resend">Renvoyer un code</button><button type="button" id="backEmail">Changer d'adresse</button></div>
+      </form>
+      <div class="msg" id="gMsg" style="margin-top:14px"></div>
+    </div>
+    <div id="gDenied" hidden>
+      <div class="eyebrow">Recrutement · Espace réservé</div>
+      <h1>Un espace <em>réservé.</em></h1>
+      <p class="sub">Cet espace est réservé à Gilles IACONES et Frédéric CHOUX. Votre compte est bien reconnu, mais il n'y a pas accès.</p>
+      <div style="margin-top:18px; display:grid; gap:10px"><a class="btn btn-primary" href="/">Retour au hub</a><button class="btn btn-ghost" type="button" data-logout>Changer de compte</button></div>
+    </div>
+  </div>
+</div>
+
+<div id="app" hidden>
+  <header class="top">
+    <div class="wrap">
+      <div class="brandline">
+        <img src="/assets/apollo-full.png" alt="APOLLO" width="102" height="36">
+        <span class="sep"></span>
+        <span class="up">Hub APOLLO Team</span>
+      </div>
+      <div class="me">
+        <span id="moi"></span>
+        <a class="pill" href="/">Retour au hub</a>
+        <button class="pill" type="button" data-logout>Se déconnecter</button>
+      </div>
+    </div>
+  </header>
+  <div class="band" id="band" hidden>
+    <div class="wrap">
+      <b>Mode test</b>
+      <span>Les mails partent avec la mention [TEST] et les documents DocuSeal portent un filigrane. Aucune boîte Google, aucune fiche Consultant ni aucun groupe ne sont modifiés.</span>
+      <span class="sp"></span>
+      <span id="pret"></span>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <div class="hero">
+      <div class="txt">
+        <div class="eyebrow">Recrutement · Espace réservé</div>
+        <h1 class="titre">Du premier échange<br><span>au premier jour.</span></h1>
+        <p class="lead">Une fiche suffit. Accord de confidentialité, dossier, contrat, boîte mail et accès aux outils s'enchaînent seuls, avec Frédéric et Gilles en copie de chaque échange.</p>
+      </div>
+      <div class="lock">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F77F00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
+        <span>Réservé à <strong>Gilles IACONES</strong> et <strong>Frédéric CHOUX</strong></span>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="k">Parcours en cours</div><div class="v" id="sCours">0</div></div>
+      <div class="stat"><div class="k">Signatures attendues</div><div class="v" id="sSign">0</div></div>
+      <div class="stat"><div class="k">Pièces à fournir</div><div class="v" id="sPieces">0</div></div>
+      <div class="stat hot"><div class="k" id="sMoisL">Arrivés ce mois-ci</div><div class="v" id="sMois">0</div></div>
+    </div>
+
+    <div class="grid">
+      <section class="fiche" aria-labelledby="ficheTitre">
+        <div class="kicker"><i></i>Nouveau consultant</div>
+        <h2 id="ficheTitre">Une fiche, et le parcours démarre.</h2>
+        <p class="intro">Le futur consultant complétera lui-même son statut, son SIREN et ses justificatifs.</p>
+        <form class="form" id="fiche" novalidate autocomplete="off">
+          <div class="leg">Le futur consultant</div>
+          <div class="f full">Civilité
+            <div class="seg" id="civ" role="group" aria-label="Civilité">
+              <button type="button" data-v="Madame" aria-pressed="false">Madame</button>
+              <button type="button" data-v="Monsieur" aria-pressed="false">Monsieur</button>
+            </div>
+          </div>
+          <label class="f">Prénom<input id="prenom" required autocomplete="off"></label>
+          <label class="f">Nom<input id="nom" required autocomplete="off"></label>
+          <label class="f">Téléphone<input id="tel" inputmode="tel" autocomplete="off"></label>
+          <label class="f w2">E-mail personnel<input id="emailPerso" type="email" inputmode="email" autocapitalize="none" spellcheck="false" required></label>
+          <label class="f w2">Sa future adresse APOLLO
+            <span class="adr"><input id="apollo" autocapitalize="none" spellcheck="false"><span class="libre wait" id="libre" hidden></span></span>
+            <span class="aide">Créée à la contresignature, avec sa signature mail.</span>
+          </label>
+
+          <div class="leg">Sa mission</div>
+          <label class="f w2">Région APOLLO<select id="region" required><option value="">Choisir…</option></select></label>
+          <label class="f s">Code région<input id="codeRegion" inputmode="numeric" placeholder="2"></label>
+          <label class="f">Date de début<input id="debut" type="date" required></label>
+          <label class="f w2">Territoire<input id="territoire" placeholder="Calvados (14)" required></label>
+          <div class="f full">Groupes confiés
+            <div class="groupes">
+              <div id="grListe"></div>
+              <div class="ajout" id="grAjout" hidden><select id="grChoix" aria-label="Choisir un groupe"></select><button type="button" class="add" id="grAnnuler">Fermer</button></div>
+              <button type="button" class="add" id="grPlus">+ Ajouter un groupe</button>
+            </div>
+            <span class="aide">Les groupes lui sont attribués à sa date de début : les commissions suivent à partir de là.</span>
+          </div>
+
+          <div class="leg">Ses objectifs (annexe 2 du contrat)</div>
+          <label class="f w2">Groupes à créer sur 12 mois<input id="objCreation" placeholder="1 Groupe, à Bayeux"></label>
+          <label class="f">Groupes accompagnés à terme<input id="nbCible" type="number" min="1" max="20" inputmode="numeric"></label>
+          <label class="f full"><span>Objectifs particuliers <span class="aide">(facultatif)</span></span><textarea id="objParticuliers" placeholder="Néant."></textarea></label>
+
+          <div class="leg">Contresigne pour ABGF</div>
+          <div class="f full" style="gap:0">
+            <div class="choix" id="sig" role="group" aria-label="Contresigne pour ABGF"></div>
+          </div>
+
+          <p class="ferr" id="ficheErr" hidden></p>
+          <button type="submit" class="go" id="go"><span id="goTxt">Envoyer l'accord de confidentialité</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <p class="annul-envoi" id="goAnnul" hidden><button type="button">Revenir à la fiche</button></p>
+          <p class="note">Le mail part à votre nom. Gilles et Frédéric sont en copie, et les réponses du futur consultant vous arrivent à tous les deux.</p>
+        </form>
+      </section>
+
+      <aside class="col">
+        <section class="carte">
+          <h2>Le circuit, ensuite</h2>
+          <p class="s">Une seule action humaine : la contresignature.</p>
+          <ol class="circuit">
+            <li><div class="rail"><span class="ic"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F77F00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/></svg></span><span class="trait"></span></div><div class="c"><div class="t">Accord de confidentialité</div><div class="d">Part dès l'envoi de la fiche et se signe en ligne en deux minutes.</div></div></li>
+            <li><div class="rail"><span class="ic"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F77F00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6H9l2 2h8.5A1.5 1.5 0 0 1 21 9.5v8a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5z"/></svg></span><span class="trait"></span></div><div class="c"><div class="t">Dossier du consultant</div><div class="d">Statut, SIREN vérifié au répertoire Sirene, adresse et justificatifs, jamais bloquants.</div></div></li>
+            <li><div class="rail"><span class="ic"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F77F00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg></span><span class="trait"></span></div><div class="c"><div class="t">Contrat</div><div class="d">Rédigé à son nom, signé par lui, puis contresigné pour ABGF en un clic.</div></div></li>
+            <li><div class="rail"><span class="ic"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F77F00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/></svg></span><span class="trait"></span></div><div class="c"><div class="t">Boîte mail et accès</div><div class="d">prenom.nom@apollofrance.com, signature mail, DASHBOARD, DELPHI, App, ACADEMY, AGI, Espace Président.</div></div></li>
+            <li><div class="rail"><span class="ic plein"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B0B0D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18"/></svg></span></div><div class="c"><div class="t">Bienvenue</div><div class="d">Un mail complet : ses accès, ses premiers pas, ses contacts.</div></div></li>
+          </ol>
+        </section>
+        <section class="carte relances">
+          <h2>Relances automatiques</h2>
+          <ul class="puces">
+            <li>Accord, dossier ou contrat en attente : relance à J+3, puis J+7.</li>
+            <li>Pièces manquantes après l'arrivée : un rappel par semaine, pendant dix semaines au plus.</li>
+            <li>Attestation URSSAF : demandée tous les 6 mois, rappel 15 jours avant l'échéance.</li>
+            <li>Parcours annulé : plus aucune relance, liens désactivés.</li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+
+    <section class="liste" aria-labelledby="listeTitre">
+      <div class="tete">
+        <h2 id="listeTitre">Les parcours</h2>
+        <div class="onglets" id="onglets" role="group" aria-label="Filtrer les parcours">
+          <button type="button" data-f="cours" aria-pressed="true">En cours</button>
+          <button type="button" data-f="arrives" aria-pressed="false">Arrivés</button>
+          <button type="button" data-f="annules" aria-pressed="false">Annulés</button>
+        </div>
+      </div>
+      <div id="parcours"></div>
+    </section>
+  </main>
+</div>
+
+<div id="voile" class="voile" hidden></div>
+<aside id="volet" class="volet" hidden role="dialog" aria-modal="true" aria-labelledby="vTitre">
+  <div class="vh">
+    <div><h2 id="vTitre"></h2><div class="z" id="vSous"></div></div>
+    <button class="fermer" type="button" id="vFermer" aria-label="Fermer"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="vb" id="vCorps"></div>
+  <div class="vf" id="vActions"></div>
+</aside>
+
+<div id="dlg" class="dlg" hidden>
+  <section role="dialog" aria-modal="true" aria-labelledby="dTitre">
+    <div class="t"><span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F08A8A" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span><h2 id="dTitre"></h2></div>
+    <p>Les relances s'arrêtent aussitôt, et les liens de signature et de dossier sont désactivés. Le parcours reste dans l'historique.</p>
+    <label class="m">Motif (facultatif)<input type="text" id="dMotif" placeholder="Le candidat a choisi une autre voie"></label>
+    <label class="c"><input type="checkbox" id="dPrevenir" checked><span><b id="dPrevenirT"></b><small>« Merci pour nos échanges. Nous ne donnons pas suite pour le moment, et serons heureux de vous recroiser. »</small></span></label>
+    <div class="bts"><button type="button" class="garder" id="dGarder">Garder le parcours</button><button type="button" class="rouge" id="dOk">Annuler le parcours</button></div>
+  </section>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="/supabase.js"></script>
+<script>
+(function () {
+  "use strict";
+  var SB_URL = "https://iaqcmrzgvlbedbiwyuze.supabase.co";
+  var SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlhcWNtcnpndmxiZWRiaXd5dXplIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzkyMjYwMTMsImV4cCI6MjA1NDgwMjAxM30.kzG-7mJ5srAUynfHS47Q_neeDWxYGrDi76klY3O-XHI";
+  var FN = SB_URL + "/functions/v1/Recrutement";
+  var $ = function (id) { return document.getElementById(id); };
+  var sb = null;
+  var S = { data: null, filtre: "cours", groupes: [], civ: null, sig: "frederic", adrManuelle: false, confirmer: false, envoi: false, detail: null, minuterie: null };
+
+  var MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+  var ANNULABLES = ["fiche", "accord_envoye", "accord_signe", "dossier_valide", "contrat_envoye", "contrat_signe_consultant"];
+  var STATUT_JUR = { societe: "Société", ei: "Entreprise individuelle", non_immatricule: "Immatriculation en cours" };
+
+  function esc(v) { return String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;"); }
+  function jj(d) { if (!d) return ""; var x = new Date(d.length === 10 ? d + "T12:00:00" : d); return x.toLocaleDateString("fr-FR", { timeZone: "Europe/Paris", day: "2-digit", month: "2-digit" }); }
+  function jjaa(d) { if (!d) return ""; var x = new Date(d.length === 10 ? d + "T12:00:00" : d); return x.toLocaleDateString("fr-FR", { timeZone: "Europe/Paris", day: "2-digit", month: "2-digit", year: "numeric" }); }
+  function heure(d) { return new Date(d).toLocaleString("fr-FR", { timeZone: "Europe/Paris", day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }).replace(",", ""); }
+  function dateLongue(d) { if (!d) return ""; var x = new Date(d + "T12:00:00"); var j = x.getDate(); return (j === 1 ? "1er" : j) + " " + MOIS[x.getMonth()] + " " + x.getFullYear(); }
+  function nomPropre(p) { return (p.prenom || "") + " " + String(p.nom || "").toUpperCase(); }
+  function regionLisible(n) {
+    return String(n || "").replace(/\(.*?\)/g, "").trim().split(/\s+/).map(function (m) {
+      if (/^(de|du|des|la|le|et)$/i.test(m)) return m.toLowerCase();
+      if (m === m.toUpperCase() && m.length > 2) return m.charAt(0) + m.slice(1).toLowerCase();
+      return m;
+    }).join(" ");
+  }
+  function sansAccents(s) { return s.normalize("NFD").replace(/[̀-ͯ]/g, ""); }
+  function adresseApollo(p, n, dom) {
+    p = sansAccents(String(p || "").trim().toLowerCase()).replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "").replace(/-+/g, "-");
+    n = sansAccents(String(n || "").trim().toLowerCase()).replace(/['’\s]+/g, "").replace(/[^a-z0-9-]/g, "").replace(/-+/g, "-");
+    return p && n ? p + "." + n + "@" + dom : "";
+  }
+
+  var tt = null;
+  function toast(msg, err) {
+    var t = $("toast");
+    t.textContent = msg; t.classList.toggle("err", !!err); t.classList.add("on");
+    clearTimeout(tt); tt = setTimeout(function () { t.classList.remove("on"); }, err ? 6000 : 3800);
+  }
+
+  /* ---------- porte ---------- */
+  function porte(etat, msg, err) {
+    $("app").hidden = true; $("gate").hidden = false;
+    $("gLoad").hidden = etat !== "load"; $("gLogin").hidden = etat !== "login"; $("gDenied").hidden = etat !== "denied";
+    var m = $("gMsg"); m.textContent = msg || ""; m.classList.toggle("err", !!err);
+  }
+  function modeLogin(w) {
+    $("fPwd").hidden = w !== "pwd"; $("fCode").hidden = w !== "code"; $("fVerify").hidden = w !== "verify";
+    var f = { pwd: "lEmail", code: "cEmail", verify: "cToken" }[w];
+    setTimeout(function () { var el = $(f); if (el) el.focus(); }, 50);
+  }
+  function lisible(e) {
+    var s = String((e && e.message) || e || "").toLowerCase();
+    if (s.indexOf("invalid login") >= 0 || s.indexOf("invalid credentials") >= 0) return "Cet e-mail ou ce mot de passe est inconnu. Vous pouvez aussi recevoir un code par e-mail.";
+    if (s.indexOf("rate") >= 0 || s.indexOf("too many") >= 0) return "Trop d'essais en peu de temps. Réessayez dans quelques minutes.";
+    if (s.indexOf("expired") >= 0 || s.indexOf("otp") >= 0) return "Ce code est expiré ou incorrect. Demandez un nouveau code.";
+    if (s.indexOf("signups not allowed") >= 0 || s.indexOf("user not found") >= 0) return "Cet e-mail est inconnu dans l'app APOLLO.";
+    if (s.indexOf("failed to fetch") >= 0 || s.indexOf("network") >= 0) return "Le réseau ne répond pas pour l'instant. Réessayez dans un instant.";
+    return "La connexion a échoué. Réessayez, ou demandez un code par e-mail.";
+  }
+  function occupe(b, on, txt) { if (!b.getAttribute("data-l")) b.setAttribute("data-l", b.textContent); b.disabled = on; b.textContent = on ? txt : b.getAttribute("data-l"); }
+
+  async function api(action, data) {
+    var s = (await sb.auth.getSession()).data.session;
+    if (!s) { var e0 = new Error("Session expirée. Reconnectez-vous."); e0.status = 401; throw e0; }
+    var r, j = null;
+    try {
+      r = await fetch(FN, { method: "POST", headers: { "Content-Type": "application/json", Authorization: "Bearer " + s.access_token }, body: JSON.stringify(Object.assign({ route: "admin", action: action }, data || {})) });
+      j = await r.json();
+    } catch (x) { var e1 = new Error("Le service ne répond pas pour l'instant. Réessayez dans un instant."); e1.status = 0; throw e1; }
+    if (!r.ok || !j || j.ok === false) { var e2 = new Error((j && j.erreur) || "Une erreur est survenue."); e2.status = r.status; throw e2; }
+    return j;
+  }
+
+  async function verifier() {
+    var sess = (await sb.auth.getSession()).data.session;
+    if (!sess) { porte("login"); modeLogin("pwd"); return; }
+    porte("load");
+    try { S.data = await api("init"); }
+    catch (e) {
+      if (e.status === 403) { porte("denied"); return; }
+      if (e.status === 401) { porte("login", e.message, true); modeLogin("pwd"); return; }
+      porte("login", e.message, true); modeLogin("pwd"); return;
+    }
+    $("gate").hidden = true; $("app").hidden = false;
+    demarrer();
+  }
+  async function deconnexion() { try { await sb.auth.signOut(); } catch (e) {} location.replace(location.pathname); }
+
+  /* ---------- l'espace ---------- */
+  var demarre = false;
+  function demarrer() {
+    var d = S.data;
+    $("moi").innerHTML = "<strong>" + esc(d.moi.prenom + " " + d.moi.nom) + "</strong> · " + esc(d.moi.titre.split(",")[0]);
+    $("band").hidden = d.mode === "live";
+    $("pret").innerHTML = etatPret("Google", d.pret.google) + " " + etatPret("DocuSeal", d.pret.docuseal);
+    if (!demarre) {
+      demarre = true;
+      remplirFiche();
+      brancher();
+      S.minuterie = setInterval(function () { if (!document.hidden && $("volet").hidden && $("dlg").hidden) rafraichir(true); }, 45000);
+      document.addEventListener("visibilitychange", function () { if (!document.hidden) rafraichir(true); });
+    }
+    afficher();
+  }
+  function etatPret(n, ok) { return '<span class="etat' + (ok ? "" : " off") + '"><i></i>' + n + (ok ? " prêt" : " à brancher") + "</span>"; }
+  async function rafraichir(discret) {
+    try { S.data = await api("init"); demarrer(); }
+    catch (e) { if (!discret) toast(e.message, true); if (e.status === 401) verifier(); }
+  }
+
+  function afficher() {
+    var P = S.data.parcours, maintenant = new Date();
+    var cours = P.filter(function (p) { return p.statut !== "termine" && p.statut !== "annule"; });
+    $("sCours").textContent = cours.length;
+    $("sSign").textContent = P.filter(function (p) { return ["accord_envoye", "contrat_envoye", "contrat_signe_consultant"].indexOf(p.statut) >= 0; }).length;
+    $("sPieces").textContent = P.filter(function (p) { return p.pieces_manquantes && p.pieces_manquantes.length && ["contrat_envoye", "contrat_signe_consultant", "contrat_signe", "acces_crees", "termine"].indexOf(p.statut) >= 0; }).length;
+    $("sMoisL").textContent = "Arrivés en " + MOIS[maintenant.getMonth()];
+    $("sMois").textContent = P.filter(function (p) { if (!p.bienvenue_at) return false; var b = new Date(p.bienvenue_at); return b.getMonth() === maintenant.getMonth() && b.getFullYear() === maintenant.getFullYear(); }).length;
+    var listes = {
+      cours: cours,
+      arrives: P.filter(function (p) { return p.statut === "termine"; }),
+      annules: P.filter(function (p) { return p.statut === "annule"; })
+    };
+    document.querySelectorAll("#onglets button").forEach(function (b) {
+      var f = b.getAttribute("data-f"), n = listes[f].length;
+      b.textContent = { cours: "En cours", arrives: "Arrivés", annules: "Annulés" }[f] + (n ? " · " + n : "");
+      b.setAttribute("aria-pressed", String(f === S.filtre));
+    });
+    var L = listes[S.filtre];
+    if (!L.length) {
+      $("parcours").innerHTML = '<div class="vide">' + { cours: "Aucun parcours en cours. Remplissez la fiche pour lancer le premier.", arrives: "Aucune arrivée pour le moment.", annules: "Aucun parcours annulé." }[S.filtre] + "</div>";
+      return;
+    }
+    $("parcours").innerHTML = L.map(ligne).join("");
+  }
+
+  var SEG = ["Accord", "Dossier", "Contrat", "Accès", "Bienvenue"];
+  function etat(p) {
+    var r = function (s, o) { return Object.assign({ seg: s, ton: "" }, o); };
+    var relance = p.relance_prochaine_at ? " · relance le " + jj(p.relance_prochaine_at) : "";
+    switch (p.statut) {
+      case "fiche": return r([0.5, 0, 0, 0, 0], { a: "Accord à envoyer", z: "Envoi en préparation" });
+      case "accord_envoye": return r([0.5, 0, 0, 0, 0], { a: "Accord envoyé le " + jj(p.nda_envoye_at), z: "Signature attendue" + relance });
+      case "accord_signe": return r([1, 0.5, 0, 0, 0], { a: "Dossier en cours", z: "Accord signé le " + jj(p.nda_signe_at) + relance });
+      case "dossier_valide": return r([1, 1, 0.5, 0, 0], { a: "Contrat en préparation", z: "Dossier validé le " + jj(p.dossier_valide_at) });
+      case "contrat_envoye": return r([1, 1, 0.5, 0, 0], { a: "Contrat envoyé le " + jj(p.contrat_envoye_at), z: "Signature du consultant attendue" + relance });
+      case "contrat_signe_consultant": {
+        var moi = p.signataire === S.data.moi.signataire_cle, qui = signataire(p.signataire);
+        return r([1, 1, 0.5, 0, 0], { a: moi ? "À contresigner" : "Chez " + qui.prenom + " pour contresignature", z: "Signé par le consultant le " + jj(p.contrat_signe_consultant_at) });
+      }
+      case "contrat_signe": return r([1, 1, 1, 0.5, 0], { a: "Création des accès", z: "Contrat contresigné le " + jj(p.contrat_signe_at) });
+      case "acces_crees": return r([1, 1, 1, 1, 0.5], { a: "Accès créés", z: "Mail de bienvenue en cours" });
+      case "termine": {
+        var pm = p.pieces_manquantes || [];
+        return r([1, 1, 1, 1, 1], { a: "Arrivée le " + jj(p.bienvenue_at), ton: "vert", z: pm.length ? (pm.length > 1 ? pm.length + " pièces à fournir" : "1 pièce à fournir") + " · relance auto" : "Dossier complet" });
+      }
+      case "annule": return r([-1, -1, -1, -1, -1], { a: "Annulé le " + jj(p.annule_at), ton: "gris", z: p.annule_motif ? p.annule_motif : "Relances arrêtées" });
+      default: return r([0, 0, 0, 0, 0], { a: p.statut, z: "" });
+    }
+  }
+  function signataire(cle) {
+    var m = (S.data.equipe || []).filter(function (x) { return x.signataire_cle === cle; })[0];
+    return m || { prenom: cle === "gilles" ? "Gilles" : "Frédéric", nom: "" };
+  }
+  function sousTitre(p) {
+    var g = p.groupes || [], bout = [];
+    if (p.territoire) bout.push(p.territoire);
+    if (p.statut_juridique === "non_immatricule") bout.push("immatriculation en cours");
+    else if (g.length) bout.push(g.length > 1 ? g.length + " groupes" : g[0].nom);
+    else bout.push(regionLisible(p.region_nom));
+    return bout.filter(Boolean).join(" · ");
+  }
+  function bouton(act, id, txt, cls) { return '<button type="button" class="b-s' + (cls ? " " + cls : "") + '" data-act="' + act + '" data-id="' + id + '">' + txt + "</button>"; }
+  var CROIX = '<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+  function actions(p, volet) {
+    var b = [], moi = p.signataire === S.data.moi.signataire_cle;
+    var reprise = p.derniere_erreur && ["fiche", "accord_signe", "dossier_valide", "contrat_signe", "acces_crees"].indexOf(p.statut) >= 0;
+    if (reprise) b.push(bouton("reprendre", p.id, "Reprendre", "prim"));
+    if (p.statut === "contrat_signe_consultant" && moi && p.lien_abgf) b.push('<a class="b-s prim" href="' + esc(p.lien_abgf) + '" target="_blank" rel="noopener">Contresigner</a>');
+    if (p.statut === "contrat_signe_consultant" && !moi) b.push(bouton("relancer", p.id, "Relancer " + esc(signataire(p.signataire).prenom)));
+    if (!reprise && ["accord_envoye", "accord_signe", "contrat_envoye"].indexOf(p.statut) >= 0) b.push(bouton("relancer", p.id, "Relancer"));
+    if (p.statut === "termine" && p.pieces_manquantes && p.pieces_manquantes.length) b.push(bouton("relancer", p.id, "Relancer les pièces"));
+    if (!volet) b.push(bouton("detail", p.id, p.statut === "annule" ? "Historique" : "Détail"));
+    if (ANNULABLES.indexOf(p.statut) >= 0) b.push(bouton("annuler", p.id, CROIX + "Annuler", "nu"));
+    return b.join("");
+  }
+  function ligne(p) {
+    var e = etat(p);
+    var barre = SEG.map(function (l, i) {
+      var v = e.seg[i], c = v < 0 ? (i === 0 ? "gris" : "") : v >= 1 ? "on" : v > 0 ? "mi" : "";
+      return '<div><div class="b ' + c + '"></div><div class="l">' + l + "</div></div>";
+    }).join("");
+    return '<article class="p' + (p.statut === "annule" ? " annule" : "") + '">' +
+      '<div class="qui"><button type="button" class="nom" data-act="detail" data-id="' + p.id + '">' + esc(nomPropre(p)) + "</button>" + (p.test ? '<span class="tag">TEST</span>' : "") +
+      '<div class="ou">' + esc(sousTitre(p)) + "</div></div>" +
+      '<div class="barre">' + barre + "</div>" +
+      '<div class="statut"><div class="a ' + e.ton + '">' + esc(e.a) + '</div><div class="z">' + esc(e.z) + "</div>" +
+      (p.derniere_erreur ? '<div class="err">Interrompu : ' + esc(String(p.derniere_erreur).slice(0, 140)) + "</div>" : "") + "</div>" +
+      '<div class="acts">' + actions(p, false) + "</div></article>";
+  }
+
+  /* ---------- la fiche ---------- */
+  function prochainMois() {
+    var d = new Date(), n = new Date(d.getFullYear(), d.getMonth() + 1, 1);
+    return n.getFullYear() + "-" + String(n.getMonth() + 1).padStart(2, "0") + "-01";
+  }
+  function remplirFiche() {
+    var d = S.data;
+    $("region").innerHTML = '<option value="">Choisir…</option>' + d.regions.map(function (r) { var dep = (r.nom.match(/\(([^)]*)\)/) || [])[1]; return '<option value="' + esc(r.id) + '">' + esc(regionLisible(r.nom)) + (dep ? " · " + esc(dep) : "") + "</option>"; }).join("");
+    $("debut").value = prochainMois();
+    $("debut").min = new Date().toISOString().slice(0, 10);
+    $("sig").innerHTML = d.equipe.slice().sort(function (a, b) { return a.signataire_cle === "frederic" ? -1 : 1; }).map(function (m) {
+      var sous = m.signataire_cle === "frederic" ? "Directeur National, par délégation" : "Président d'ABGF";
+      return '<button type="button" data-v="' + esc(m.signataire_cle) + '" aria-pressed="' + (m.signataire_cle === S.sig) + '"><b>' + esc(m.prenom + " " + m.nom) + "</b><span>" + sous + "</span></button>";
+    }).join("");
+    afficherGroupes();
+  }
+  function groupeInfo(id) { return S.data.groupes.filter(function (g) { return g.id === id; })[0]; }
+  function afficherGroupes() {
+    $("grListe").innerHTML = S.groupes.map(function (g, i) {
+      var info = groupeInfo(g.id) || {}, actuel = String(info.consultant || "").trim();
+      return '<div class="gr"><strong>' + esc(g.nom) + "</strong>" +
+        '<span class="m">' + (info.membres != null ? info.membres + (info.membres > 1 ? " membres aujourd'hui" : " membre aujourd'hui") : "") + (info.statut && info.statut !== "Actif" ? " · " + esc(info.statut.toLowerCase()) : "") + "</span>" +
+        '<label class="obj">Objectif<input type="number" min="1" max="99" inputmode="numeric" data-obj="' + i + '" value="' + esc(g.objectif || "") + '" placeholder="30" aria-label="Objectif de membres à 12 mois">membres à 12 mois</label>' +
+        '<button type="button" class="x" data-retirer="' + i + '" aria-label="Retirer ce groupe">' + CROIX + "</button>" +
+        (actuel ? '<span class="warn">Suivi aujourd\'hui par ' + esc(actuel) + " : il lui sera attribué à la date de début.</span>" : "") + "</div>";
+    }).join("");
+    if (!S.groupes.length) $("grListe").innerHTML = '<div class="gr" style="background:transparent"><span class="m">Aucun groupe pour l\'instant : le consultant peut démarrer par une création.</span></div>';
+    $("grPlus").hidden = S.groupes.length >= 4 || !$("grAjout").hidden;
+  }
+  function ouvrirChoixGroupe() {
+    var reg = $("region").value, pris = S.groupes.map(function (g) { return g.id; });
+    var dispo = S.data.groupes.filter(function (g) { return pris.indexOf(g.id) < 0; });
+    var dans = dispo.filter(function (g) { return reg && g.region_id === reg; }), autres = dispo.filter(function (g) { return !(reg && g.region_id === reg); });
+    var opt = function (g) { return '<option value="' + esc(g.id) + '">' + esc(g.nom) + (g.consultant ? " · " + esc(String(g.consultant).trim()) : "") + "</option>"; };
+    $("grChoix").innerHTML = '<option value="">Choisir un groupe…</option>' +
+      (dans.length ? '<optgroup label="Dans la région">' + dans.map(opt).join("") + "</optgroup>" : "") +
+      (autres.length ? '<optgroup label="' + (dans.length ? "Autres groupes" : "Tous les groupes") + '">' + autres.map(opt).join("") + "</optgroup>" : "");
+    $("grAjout").hidden = false; $("grPlus").hidden = true;
+    $("grChoix").focus();
+  }
+  function majAdresse() {
+    if (S.adrManuelle) return;
+    $("apollo").value = adresseApollo($("prenom").value, $("nom").value, S.data.domaine || "apollofrance.com");
+    $("libre").hidden = true;
+  }
+  var dernierControle = "";
+  async function controlerAdresse() {
+    var a = $("apollo").value.trim().toLowerCase();
+    if (!a || a === dernierControle) return;
+    dernierControle = a;
+    var l = $("libre"); l.hidden = false; l.className = "libre wait"; l.textContent = "Vérification…";
+    try {
+      var j = await api("adresse", { email: a });
+      if ($("apollo").value.trim().toLowerCase() !== a) return;
+      if (j.libre === null) { l.hidden = true; return; }
+      l.className = "libre " + (j.libre ? "ok" : "ko"); l.textContent = j.libre ? "Disponible" : "Déjà utilisée";
+    } catch (e) { l.hidden = true; dernierControle = ""; }
+  }
+
+  function lireFiche() {
+    var reg = S.data.regions.filter(function (r) { return r.id === $("region").value; })[0];
+    return {
+      civilite: S.civ, prenom: $("prenom").value.trim(), nom: $("nom").value.trim(), telephone: $("tel").value.trim(),
+      email_perso: $("emailPerso").value.trim().toLowerCase(), apollo_email: $("apollo").value.trim().toLowerCase(),
+      date_effet: $("debut").value, region_id: reg ? reg.id : null, region_nom: reg ? reg.nom : null,
+      code_region: $("codeRegion").value.trim() || null, territoire: $("territoire").value.trim(),
+      groupes: S.groupes.map(function (g) { return { id: g.id, nom: g.nom, code: g.code, membres: g.membres, objectif: g.objectif ? Number(g.objectif) : null }; }),
+      objectif_creation: $("objCreation").value.trim() || null, nb_groupes_cible: $("nbCible").value ? Number($("nbCible").value) : null,
+      objectifs_specifiques: $("objParticuliers").value.trim() || null, signataire: S.sig
+    };
+  }
+  function controlerFiche(f) {
+    var manque = [];
+    var marque = function (id, ok, lib) { var el = $(id).closest(".f"); if (el) el.classList.toggle("bad", !ok); if (!ok) manque.push(lib); };
+    marque("prenom", !!f.prenom, "le prénom");
+    marque("nom", !!f.nom, "le nom");
+    marque("emailPerso", /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(f.email_perso), "un e-mail personnel valide");
+    marque("apollo", /^[a-z0-9.-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(f.apollo_email), "l'adresse APOLLO");
+    marque("debut", !!f.date_effet, "la date de début");
+    marque("region", !!f.region_id, "la région");
+    marque("territoire", !!f.territoire, "le territoire");
+    return manque;
+  }
+  function etatBouton() {
+    $("go").classList.toggle("confirm", S.confirmer);
+    $("goAnnul").hidden = !S.confirmer;
+    var f = lireFiche();
+    $("goTxt").textContent = S.envoi ? "Envoi en cours…" : S.confirmer ? "Confirmer l'envoi à " + f.email_perso : "Envoyer l'accord de confidentialité";
+    $("go").disabled = S.envoi;
+  }
+  async function envoyerFiche(e) {
+    e.preventDefault();
+    var f = lireFiche(), manque = controlerFiche(f), err = $("ficheErr");
+    if (manque.length) { err.hidden = false; err.textContent = "Il manque " + manque.join(", ") + "."; S.confirmer = false; etatBouton(); return; }
+    err.hidden = true;
+    if (!S.confirmer) { S.confirmer = true; etatBouton(); return; }
+    S.envoi = true; etatBouton();
+    try {
+      await api("creer", { fiche: f });
+      toast("Accord envoyé à " + f.prenom + " " + f.nom.toUpperCase() + ".");
+      viderFiche();
+      S.filtre = "cours";
+      await rafraichir();
+    } catch (x) {
+      err.hidden = false;
+      if (x.status >= 500) {
+        err.textContent = "L'envoi a échoué : " + x.message + " Le parcours est enregistré : relancez-le avec « Reprendre » dans la liste une fois le souci réglé.";
+        viderFiche(); rafraichir(true);
+      } else err.textContent = x.message;
+    } finally { S.envoi = false; S.confirmer = false; etatBouton(); }
+  }
+  function viderFiche() {
+    ["prenom", "nom", "tel", "emailPerso", "apollo", "territoire", "codeRegion", "objCreation", "nbCible", "objParticuliers"].forEach(function (id) { $(id).value = ""; });
+    $("region").value = ""; $("debut").value = prochainMois();
+    S.groupes = []; S.civ = null; S.adrManuelle = false; dernierControle = ""; $("libre").hidden = true;
+    document.querySelectorAll("#civ button").forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
+    document.querySelectorAll("#fiche .bad").forEach(function (x) { x.classList.remove("bad"); });
+    afficherGroupes();
+  }
+
+  /* ---------- le volet de detail ---------- */
+  var LIB_JOURNAL = {
+    fiche: "Fiche créée", accord_envoye: "Accord de confidentialité envoyé", accord_signe: "Accord signé", piece: "Pièce déposée",
+    dossier_valide: "Dossier validé", contrat_envoye: "Contrat envoyé", contrat_signe_consultant: "Contrat signé par le consultant",
+    contrat_signe: "Contrat contresigné pour ABGF", acces_simules: "Accès simulés (mode test)", google_cree: "Boîte Google créée",
+    google_existant: "Boîte Google déjà existante", signature_differee: "Signature mail reportée", fiche_consultant: "Fiche Consultant créée",
+    groupes_assignes: "Groupes attribués", bienvenue: "Mail de bienvenue envoyé", activation: "Mot de passe provisoire consulté",
+    annule: "Parcours annulé", relance_manuelle: "Relance manuelle", reprise: "Parcours repris", erreur: "Interruption"
+  };
+  var LIB_MAIL = { accord: "accord", dossier: "lien du dossier", contrat: "contrat", contresignature: "demande de contresignature", bienvenue: "bienvenue", pieces: "pièces à fournir", annulation: "fin de parcours", urssaf: "attestation URSSAF", relance_accord: "relance accord", relance_dossier: "relance dossier", relance_contrat: "relance contrat" };
+  var LIB_PIECE = { kbis: "Kbis ou avis de situation", rc_pro: "RC Pro", urssaf: "attestation URSSAF", rib: "RIB", recepisse: "récépissé de création" };
+  function libJournal(j) {
+    var d = j.detail || {};
+    if (j.type === "mail") return "Mail envoyé : " + (LIB_MAIL[d.type] || d.type) + (d.a ? " (" + d.a.join(", ") + ")" : "");
+    if (j.type === "piece") return "Pièce déposée : " + (LIB_PIECE[d.type] || d.type);
+    if (j.type === "erreur") return '<span class="e">Interruption' + (d.etape ? " (" + esc(d.etape) + ")" : "") + " : " + esc(d.message || "") + "</span>";
+    if (j.type === "annule") return "Parcours annulé" + (d.motif ? " : " + esc(d.motif) : "") + (d.prevenu ? ", candidat prévenu" : "");
+    return esc(LIB_JOURNAL[j.type] || j.type);
+  }
+  function kv(paires) {
+    return '<dl class="kv">' + paires.filter(function (x) { return x[1]; }).map(function (x) { return "<dt>" + esc(x[0]) + "</dt><dd>" + x[1] + "</dd>"; }).join("") + "</dl>";
+  }
+  async function ouvrirDetail(id) {
+    var p = S.data.parcours.filter(function (x) { return x.id === id; })[0];
+    if (!p) return;
+    $("vTitre").textContent = nomPropre(p);
+    $("vSous").textContent = "Parcours " + (p.code || "") + (p.test ? " · test" : "");
+    $("vCorps").innerHTML = '<div style="padding:40px 0;display:grid;place-items:center"><div class="spinner"></div></div>';
+    $("vActions").innerHTML = actions(p, true);
+    $("vActions").hidden = !$("vActions").innerHTML;
+    $("voile").hidden = false; $("volet").hidden = false;
+    S.detail = id;
+    try {
+      var j = await api("detail", { id: id });
+      if (S.detail !== id) return;
+      afficherDetail(j);
+    } catch (e) { $("vCorps").innerHTML = '<div class="alerte">' + esc(e.message) + "</div>"; }
+  }
+  function afficherDetail(j) {
+    var p = j.parcours, d = j.dossier || {}, h = [];
+    if (p.derniere_erreur) h.push('<div class="alerte"><b>Parcours interrompu.</b> ' + esc(p.derniere_erreur) + "<br>Le bouton Reprendre relance l'étape en cours.</div>");
+    var et = [
+      ["Fiche créée", p.created_at], ["Accord envoyé", p.nda_envoye_at], ["Accord signé", p.nda_signe_at], ["Dossier validé", p.dossier_valide_at],
+      ["Contrat envoyé", p.contrat_envoye_at], ["Signé par le consultant", p.contrat_signe_consultant_at], ["Contresigné pour ABGF", p.contrat_signe_at],
+      ["Accès créés", p.acces_crees_at], ["Bienvenue envoyée", p.bienvenue_at]
+    ];
+    if (p.annule_at) et.push(["Annulé", p.annule_at]);
+    h.push('<div class="bloc"><h3>Le parcours</h3><ul class="etapes">' + et.map(function (x) { return '<li class="' + (x[1] ? "ok" : "") + '">' + x[0] + "<span>" + (x[1] ? jjaa(x[1]) : "") + "</span></li>"; }).join("") + "</ul></div>");
+    var groupes = (p.groupes || []).map(function (g) { return esc(g.nom) + (g.objectif ? " (objectif " + g.objectif + ")" : ""); }).join(", ");
+    h.push('<div class="bloc"><h3>Coordonnées et mission</h3>' + kv([
+      ["E-mail personnel", p.email_perso ? '<a href="mailto:' + esc(p.email_perso) + '">' + esc(p.email_perso) + "</a>" : ""],
+      ["Téléphone", esc(p.telephone || "")], ["Adresse APOLLO", esc(p.apollo_email || "")],
+      ["Région", esc(regionLisible(p.region_nom))], ["Territoire", esc(p.territoire || "")], ["Groupes", groupes || "Aucun"],
+      ["Prise d'effet", esc(dateLongue(p.date_effet))], ["Contresigne", esc(signataire(p.signataire).prenom + " " + signataire(p.signataire).nom)]
+    ]) + "</div>");
+    if (d.statut) {
+      h.push('<div class="bloc"><h3>Dossier</h3>' + kv([
+        ["Statut", esc(STATUT_JUR[d.statut] || d.statut) + (d.statut === "non_immatricule" && d.forme_prevue ? " (" + (d.forme_prevue === "societe" ? "société" : "entreprise individuelle") + " à venir)" : "")],
+        ["SIREN", esc(d.siren ? String(d.siren).replace(/(\d{3})(\d{3})(\d{3})/, "$1 $2 $3") : "")],
+        ["Dénomination", esc(d.denomination || "")], ["Forme", esc(d.forme || "")], ["Capital", d.capital ? esc(d.capital) + " euros" : ""],
+        ["Siège", esc(d.siege || "")], ["Qualité", esc(d.qualite || "")], ["Adresse", esc(d.adresse || "")],
+        ["TVA", d.tva_assujetti ? esc(d.tva_numero || "Assujetti") : d.statut ? "Non assujetti" : ""],
+        ["Immatriculation", p.immatriculation_limite ? "à justifier avant le " + jjaa(p.immatriculation_limite) : ""]
+      ]) + "</div>");
+    }
+    var docs = (j.pieces || []).map(function (x) {
+      return '<div class="doc"><span class="i"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7FD3A0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="n">' + esc(x.libelle ? x.libelle.charAt(0).toUpperCase() + x.libelle.slice(1) : x.type) +
+        (x.nom ? "<small>" + esc(x.nom) + (x.depose_at ? " · " + jjaa(x.depose_at) : "") + "</small>" : "") + "</span>" + (x.url ? '<a class="b-s" href="' + esc(x.url) + '" target="_blank" rel="noopener">Ouvrir</a>' : "") + "</div>";
+    });
+    (j.manquantes || []).forEach(function (m) {
+      docs.push('<div class="doc manque"><span class="i"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F77F00" stroke-width="2" stroke-linecap="round"><path d="M12 7v6M12 17h.01"/></svg></span><span class="n">' + esc(m.charAt(0).toUpperCase() + m.slice(1)) + "<small>À fournir, sans bloquer le parcours</small></span></div>");
+    });
+    if (docs.length) h.push('<div class="bloc"><h3>Documents</h3><div class="docs">' + docs.join("") + "</div></div>");
+    if (j.journal && j.journal.length) h.push('<div class="bloc"><h3>Journal</h3><ul class="journal">' + j.journal.map(function (x) { return "<li><time>" + heure(x.at) + "</time><span>" + libJournal(x) + "</span></li>"; }).join("") + "</ul></div>");
+    $("vCorps").innerHTML = h.join("");
+  }
+  function fermerDetail() { $("voile").hidden = true; $("volet").hidden = true; S.detail = null; }
+
+  /* ---------- actions ---------- */
+  var cible = null;
+  function ouvrirAnnulation(id) {
+    var p = S.data.parcours.filter(function (x) { return x.id === id; })[0];
+    if (!p) return;
+    cible = p;
+    $("dTitre").textContent = "Annuler le parcours de " + nomPropre(p) + " ?";
+    $("dPrevenirT").textContent = "Prévenir " + p.prenom + " par un mail courtois";
+    $("dMotif").value = ""; $("dPrevenir").checked = p.statut !== "fiche";
+    $("dOk").disabled = false; $("dOk").textContent = "Annuler le parcours";
+    $("dlg").hidden = false;
+    setTimeout(function () { $("dMotif").focus(); }, 30);
+  }
+  async function confirmerAnnulation() {
+    if (!cible) return;
+    $("dOk").disabled = true; $("dOk").textContent = "Annulation…";
+    try {
+      await api("annuler", { id: cible.id, motif: $("dMotif").value.trim(), prevenir: $("dPrevenir").checked });
+      $("dlg").hidden = true; fermerDetail();
+      toast("Parcours de " + nomPropre(cible) + " annulé.");
+      await rafraichir();
+    } catch (e) { toast(e.message, true); $("dOk").disabled = false; $("dOk").textContent = "Annuler le parcours"; }
+  }
+  async function agir(act, id, btn) {
+    if (act === "detail") { ouvrirDetail(id); return; }
+    if (act === "annuler") { ouvrirAnnulation(id); return; }
+    var p = S.data.parcours.filter(function (x) { return x.id === id; })[0];
+    if (btn) { btn.disabled = true; btn.setAttribute("data-t", btn.innerHTML); btn.textContent = act === "reprendre" ? "Reprise…" : "Envoi…"; }
+    try {
+      await api(act === "reprendre" ? "reessayer" : "relancer", { id: id });
+      toast(act === "reprendre" ? "Parcours repris." : "Relance envoyée" + (p ? " pour " + nomPropre(p) : "") + ".");
+      await rafraichir();
+      if (S.detail === id) ouvrirDetail(id);
+    } catch (e) { toast(e.message, true); if (btn) { btn.disabled = false; btn.innerHTML = btn.getAttribute("data-t"); } }
+  }
+
+  function brancher() {
+    $("fiche").addEventListener("submit", envoyerFiche);
+    $("goAnnul").querySelector("button").addEventListener("click", function () { S.confirmer = false; etatBouton(); });
+    ["prenom", "nom"].forEach(function (id) {
+      $(id).addEventListener("input", function () { majAdresse(); if (S.confirmer) { S.confirmer = false; etatBouton(); } });
+      $(id).addEventListener("blur", function () { if (id === "nom") $("nom").value = $("nom").value.toUpperCase(); if ($("apollo").value) controlerAdresse(); });
+    });
+    $("apollo").addEventListener("input", function () { S.adrManuelle = !!$("apollo").value; $("libre").hidden = true; });
+    $("apollo").addEventListener("blur", controlerAdresse);
+    $("emailPerso").addEventListener("input", function () { if (S.confirmer) { S.confirmer = false; etatBouton(); } });
+    $("civ").addEventListener("click", function (e) {
+      var b = e.target.closest("button"); if (!b) return;
+      S.civ = b.getAttribute("data-v");
+      document.querySelectorAll("#civ button").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+    });
+    $("sig").addEventListener("click", function (e) {
+      var b = e.target.closest("button"); if (!b) return;
+      S.sig = b.getAttribute("data-v");
+      document.querySelectorAll("#sig button").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+    });
+    $("region").addEventListener("change", function () {
+      var r = S.data.regions.filter(function (x) { return x.id === $("region").value; })[0];
+      if (r && r.code && !$("codeRegion").value) $("codeRegion").value = r.code;
+    });
+    $("grPlus").addEventListener("click", ouvrirChoixGroupe);
+    $("grAnnuler").addEventListener("click", function () { $("grAjout").hidden = true; afficherGroupes(); });
+    $("grChoix").addEventListener("change", function () {
+      var g = groupeInfo($("grChoix").value); if (!g) return;
+      S.groupes.push({ id: g.id, nom: g.nom, code: g.code, membres: g.membres, objectif: null });
+      if (!$("codeRegion").value && g.code) $("codeRegion").value = g.code;
+      if (!$("region").value && g.region_id && S.data.regions.some(function (r) { return r.id === g.region_id; })) $("region").value = g.region_id;
+      $("grAjout").hidden = true; afficherGroupes();
+      if (!$("nbCible").value) $("nbCible").placeholder = String(S.groupes.length);
+    });
+    $("grListe").addEventListener("click", function (e) {
+      var b = e.target.closest("[data-retirer]"); if (!b) return;
+      S.groupes.splice(Number(b.getAttribute("data-retirer")), 1); afficherGroupes();
+    });
+    $("grListe").addEventListener("input", function (e) {
+      var i = e.target.getAttribute("data-obj"); if (i == null) return;
+      S.groupes[Number(i)].objectif = e.target.value;
+    });
+    $("onglets").addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return; S.filtre = b.getAttribute("data-f"); afficher(); });
+    document.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-act]"); if (!b) return;
+      agir(b.getAttribute("data-act"), b.getAttribute("data-id"), b.tagName === "BUTTON" && b.classList.contains("b-s") ? b : null);
+    });
+    $("vFermer").addEventListener("click", fermerDetail);
+    $("voile").addEventListener("click", fermerDetail);
+    $("dGarder").addEventListener("click", function () { $("dlg").hidden = true; });
+    $("dOk").addEventListener("click", confirmerAnnulation);
+    $("dlg").addEventListener("click", function (e) { if (e.target === $("dlg")) $("dlg").hidden = true; });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") { if (!$("dlg").hidden) $("dlg").hidden = true; else if (!$("volet").hidden) fermerDetail(); } });
+  }
+
+  function init() {
+    if (!window.supabase) { porte("login", "La connexion est indisponible sur cette page.", true); return; }
+    sb = window.supabase.createClient(SB_URL, SB_KEY, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false } });
+    document.querySelectorAll("[data-logout]").forEach(function (b) { b.addEventListener("click", deconnexion); });
+    $("toCode").addEventListener("click", function () { $("cEmail").value = $("lEmail").value; $("gMsg").textContent = ""; modeLogin("code"); });
+    $("toPwd").addEventListener("click", function () { $("gMsg").textContent = ""; modeLogin("pwd"); });
+    $("backEmail").addEventListener("click", function () { $("gMsg").textContent = ""; modeLogin("code"); });
+    $("fPwd").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      var email = $("lEmail").value.trim().toLowerCase(), pwd = $("lPwd").value;
+      if (!email || !pwd) { porte("login", "Renseignez votre e-mail et votre mot de passe.", true); return; }
+      occupe($("bPwd"), true, "Connexion…");
+      var r = await sb.auth.signInWithPassword({ email: email, password: pwd });
+      occupe($("bPwd"), false);
+      if (r.error) { porte("login", lisible(r.error), true); return; }
+      verifier();
+    });
+    async function envoyerCode() {
+      var email = $("cEmail").value.trim().toLowerCase();
+      if (!email) { porte("login", "Renseignez l'e-mail de votre compte APOLLO.", true); modeLogin("code"); return; }
+      occupe($("bSend"), true, "Envoi…");
+      var r = await sb.auth.signInWithOtp({ email: email, options: { shouldCreateUser: false } });
+      occupe($("bSend"), false);
+      if (r.error) { porte("login", lisible(r.error), true); modeLogin("code"); return; }
+      $("vHint").textContent = "Un code vient de partir vers " + email + ". Il est valable quelques minutes.";
+      modeLogin("verify");
+    }
+    $("fCode").addEventListener("submit", function (e) { e.preventDefault(); envoyerCode(); });
+    $("resend").addEventListener("click", envoyerCode);
+    $("fVerify").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      var email = $("cEmail").value.trim().toLowerCase(), token = $("cToken").value.trim();
+      if (!token) { porte("login", "Renseignez le code reçu par e-mail.", true); modeLogin("verify"); return; }
+      occupe($("bVerify"), true, "Vérification…");
+      var r = await sb.auth.verifyOtp({ email: email, token: token, type: "email" });
+      occupe($("bVerify"), false);
+      if (r.error) { porte("login", lisible(r.error), true); modeLogin("verify"); return; }
+      verifier();
+    });
+    verifier();
+  }
+  init();
+})();
+</script>
+</body>
+</html>

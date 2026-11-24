@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Merci · APOLLO</title>
+<meta name="theme-color" content="#0B0B0D">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&display=swap">
+<style>
+* { box-sizing: border-box; }
+html, body { margin: 0; background: #F7F4EF; color: #0B0B0D; font-family: Inter, "Helvetica Neue", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+.page { max-width: 560px; margin: 0 auto; }
+header { background: #0B0B0D; color: #F4F4F6; padding: 22px 22px 30px; border-radius: 0 0 26px 26px; }
+header img { height: 36px; width: auto; display: block; }
+.prog { margin-top: 22px; display: flex; gap: 6px; }
+.prog div { flex: 1; height: 5px; border-radius: 3px; background: #34343E; }
+.prog .on { background: #F77F00; }
+.prog .mi { background: rgba(247, 127, 0, 0.5); }
+.progl { margin-top: 8px; display: flex; justify-content: space-between; font-size: 11.5px; color: #A3A3AD; }
+.progl .cur { color: #F77F00; font-weight: 600; }
+.ok { margin-top: 28px; width: 52px; height: 52px; border-radius: 26px; background: #F77F00; display: flex; align-items: center; justify-content: center; }
+h1 { margin: 18px 0 0; font-size: 30px; line-height: 1.12; font-weight: 700; letter-spacing: -0.02em; }
+.lead { margin: 10px 0 0; font-size: 16px; line-height: 1.5; color: #C9C9D1; }
+main { padding: 18px 16px 36px; }
+.carte { background: #FFFFFF; border: 1px solid #ECE5DA; border-radius: 18px; padding: 20px 18px; }
+.carte h2 { margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6B6B76; }
+ol { margin: 14px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+li { display: flex; gap: 12px; align-items: flex-start; font-size: 14.5px; line-height: 1.5; color: #26262C; }
+li span { flex: none; width: 26px; height: 26px; border-radius: 13px; background: #0B0B0D; color: #F77F00; font-size: 12.5px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+li b { display: block; color: #0B0B0D; }
+.fin { margin: 16px 4px 0; font-size: 12.5px; line-height: 1.5; color: #6B6B76; text-align: center; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <img src="/assets/apollo-full.png" alt="APOLLO" width="102" height="36">
+    <div class="prog" id="prog"></div>
+    <div class="progl" id="progl"></div>
+    <div class="ok"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B0B0D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <h1 id="titre"></h1>
+    <p class="lead" id="lead"></p>
+  </header>
+  <main>
+    <section class="carte">
+      <h2>La suite</h2>
+      <ol id="suite"></ol>
+    </section>
+    <p class="fin">Une question ? Répondez au dernier mail reçu d'APOLLO : Frédéric et Gilles vous lisent. Vous pouvez fermer cette page.</p>
+  </main>
+</div>
+<script>
+(function () {
+  var contrat = /[?&]etape=contrat\b/.test(location.search);
+  var $ = function (id) { return document.getElementById(id); };
+  if (contrat) {
+    document.title = "Contrat signé · APOLLO";
+    $("prog").innerHTML = '<div class="on"></div><div class="on"></div><div class="on"></div>';
+    $("progl").innerHTML = "<span>Accord signé</span><span>Dossier</span><span class=\"cur\">Contrat signé</span>";
+    $("titre").textContent = "Votre contrat est signé.";
+    $("lead").textContent = "Merci. Bienvenue, presque : il ne manque que la contresignature d'APOLLO.";
+    $("suite").innerHTML =
+      "<li><span>1</span><div><b>APOLLO contresigne</b>Dans la journée, le plus souvent dans l'heure.</div></li>" +
+      "<li><span>2</span><div><b>Votre mail de bienvenue</b>Votre adresse @apollofrance.com, vos accès aux outils et votre feuille de route des 30 premiers jours.</div></li>" +
+      "<li><span>3</span><div><b>Votre contrat signé</b>Joint au mail de bienvenue, pour vos archives.</div></li>";
+  } else {
+    document.title = "Accord signé · APOLLO";
+    $("prog").innerHTML = '<div class="on"></div><div class="mi"></div><div></div>';
+    $("progl").innerHTML = "<span class=\"cur\">Accord signé</span><span>Votre dossier</span><span>Votre contrat</span>";
+    $("titre").textContent = "C'est signé, merci.";
+    $("lead").textContent = "Bienvenue dans les coulisses d'APOLLO.";
+    $("suite").innerHTML =
+      "<li><span>1</span><div><b>Un mail arrive dans quelques instants</b>Avec le lien personnel de votre dossier.</div></li>" +
+      "<li><span>2</span><div><b>Vous complétez votre dossier</b>Votre statut, votre SIREN et vos justificatifs, en dix minutes environ. Une pièce manque ? Elle peut attendre.</div></li>" +
+      "<li><span>3</span><div><b>Vous recevez votre contrat</b>Rédigé à votre nom, prêt à signer.</div></li>";
+  }
+})();
+</script>
+</body>
+</html>
