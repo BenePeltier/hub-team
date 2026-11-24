@@ -794,7 +794,7 @@ article.p:first-of-type { margin-top: 14px; }
   }
   function viderFiche() {
     ["prenom", "nom", "tel", "emailPerso", "apollo", "territoire", "codeRegion", "objCreation", "nbCible", "objParticuliers"].forEach(function (id) { $(id).value = ""; });
-    $("region").value = ""; $("debut").value = prochainMois();
+    $("region").value = ""; $("debut").value = prochainMois(); $("nbCible").placeholder = "";
     S.groupes = []; S.civ = null; S.adrManuelle = false; dernierControle = ""; $("libre").hidden = true;
     document.querySelectorAll("#civ button").forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
     document.querySelectorAll("#fiche .bad").forEach(function (x) { x.classList.remove("bad"); });
