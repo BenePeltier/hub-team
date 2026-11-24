@@ -890,7 +890,29 @@ const ICONS = {
   function setMe(first, last, role) { var a = $("whoName"), b = $("whoRole"); if (a) a.innerHTML = esc(first || "") + (last ? '<span class="who-ln"> ' + esc(last) + '</span>' : ""); if (b) b.textContent = role ? " · " + role : ""; }
   function showCeo() { root.querySelectorAll("[data-ceo]").forEach(function (x) { x.hidden = false; }); }
   function showRates(list) { root.querySelectorAll("[data-rate]").forEach(function (x) { x.hidden = list.indexOf(x.getAttribute("data-rate")) < 0; }); }
-  window.TeamHub = { start: init, setData: setData, setDataError: setDataError, setMe: setMe, showCeo: showCeo, showRates: showRates, toast: toast };
+
+  /* L'espace Recrutement (parcours Consultant) : la tuile n'apparaît qu'aux comptes autorisés, selon public.recrutement_hub,
+     avec l'état du moment (contrats qui attendent ta contresignature, sinon parcours en cours). Elle s'ouvre dans le hub, même session. */
+  var IC_RECRUTEMENT = '<svg class="ic" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M16 19h6" /><path d="M19 16v6" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4" /></svg>';
+  var IC_ENTRER = '<svg class="ic" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></svg>';
+  function showRecrutement(info) {
+    var grid = root.querySelector("#outils .g-tools"); if (!grid || !info) return;
+    var n = Number(info.a_contresigner) || 0, c = Number(info.en_cours) || 0;
+    var etat = n ? n + (n > 1 ? " contrats à contresigner" : " contrat à contresigner") : (c ? c + " parcours en cours" : "");
+    var a = grid.querySelector(".tool.recrutement");
+    if (!a) {
+      a = document.createElement("a");
+      a.className = "tool feature recrutement";
+      a.setAttribute("href", "/recrutement/");
+      var suivi = grid.querySelector('[data-link="suivi"]');
+      grid.insertBefore(a, suivi ? suivi.nextSibling : grid.firstChild);
+    }
+    a.innerHTML = '<span class="badge">' + IC_RECRUTEMENT + '</span>' +
+      '<span><b>Recrutement des Consultants' + (etat ? '<span class="live"><i></i>' + esc(etat) + '</span>' : '') + '</b>' +
+      '<p>De la fiche au mail de bienvenue : accord de confidentialité, dossier, contrat signé en ligne, boîte mail et accès aux outils. Visible par la direction seulement.</p></span>' +
+      '<span class="cta">Ouvrir le Recrutement' + IC_ENTRER + '</span>';
+  }
+  window.TeamHub = { start: init, setData: setData, setDataError: setDataError, setMe: setMe, showCeo: showCeo, showRates: showRates, showRecrutement: showRecrutement, toast: toast };
 })();
 </script>
 <script>
@@ -1072,6 +1094,8 @@ const SITE = {
     document.body.classList.remove("gated");
     if (location.hash) { var t = document.getElementById(location.hash.slice(1)); if (t) setTimeout(function () { try { t.scrollIntoView({ behavior: "instant", block: "start" }); } catch (e) { t.scrollIntoView(); } }, 60); }
     loadData(sess.user.id).catch(function () { window.TeamHub.setDataError("L'annuaire revient dans un instant : recharge la page."); });
+    /* L'espace Recrutement : rien ne s'affiche pour les comptes qui n'y ont pas accès */
+    sb.rpc("recrutement_hub").then(function (r) { if (r && !r.error && r.data) window.TeamHub.showRecrutement(r.data); }, function () {});
   }
 
   async function logout() {
