@@ -90,6 +90,8 @@ footer b { color: #F4F4F6; font-weight: 600; }
       r = await fetch(FN, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ route: "activation", jeton: JETON }) });
       j = await r.json();
     } catch (e) { b.disabled = false; b.textContent = "Afficher mon mot de passe provisoire"; alerte("Le réseau ne répond pas pour l'instant. Réessayez dans un instant."); return; }
+    // boîte encore en préparation chez Google : le lien reste valable, on peut réessayer
+    if (r.status === 409 && j && j.erreur) { b.disabled = false; b.textContent = "Réessayer"; attente(j.erreur); return; }
     if (!r.ok || !j || j.ok === false) { erreur((j && j.erreur) || "Ce lien n'est plus valable."); return; }
     history.replaceState(null, "", location.pathname);
     var gmail = "https://accounts.google.com/AccountChooser?Email=" + encodeURIComponent(j.email) + "&continue=" + encodeURIComponent("https://mail.google.com/mail/");
@@ -111,6 +113,11 @@ footer b { color: #F4F4F6; font-weight: 600; }
       '<li><span class="n">3</span><div><b>Ouvrez votre Hub APOLLO Team</b>Connectez-vous avec votre adresse @apollofrance.com et « Recevoir un code par e-mail ».<br><a class="lien sombre" href="/" target="_blank" rel="noopener">Ouvrir mon Hub APOLLO</a></div></li>' +
       "</ol>";
     $("corps").innerHTML = h;
+  }
+  function attente(m) {
+    var p = $("attente");
+    if (!p) { p = document.createElement("div"); p.id = "attente"; p.className = "alerte"; $("corps").appendChild(p); }
+    p.textContent = m;
   }
   function alerte(m) { var p = document.createElement("div"); p.className = "erreur"; p.style.marginTop = "12px"; p.textContent = m; $("corps").appendChild(p); }
   document.addEventListener("click", function (e) {
